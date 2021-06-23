@@ -1,0 +1,7 @@
+.stay-img {
+    transition: transform .2s;
+}
+
+.stay-img:hover {
+    transform: scale(1.1);
+}
