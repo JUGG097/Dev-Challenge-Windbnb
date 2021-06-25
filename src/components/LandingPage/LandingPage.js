@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import "./landingpage.css";
 import Stays from "../../store/stays";
 
 const LandingPage = () => {
 	console.log(Stays);
 	const [stays, setStays] = useState(Stays);
+	const [show, setShow] = useState(false);
+	const [showLocationList, setShowLocationList] = useState(true);
+	const [showGuestList, setShowGuestList] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	return (
 		<>
@@ -27,7 +34,10 @@ const LandingPage = () => {
 									borderTopRightRadius: 0,
 									borderBottomRightRadius: 0,
 								}}
-								onClick={() => {}}
+								onClick={() => {
+									handleShow();
+									setShowLocationList(true);
+								}}
 							>
 								Helsinki, Finland
 							</button>
@@ -39,6 +49,9 @@ const LandingPage = () => {
 									borderBottomLeftRadius: 0,
 									color: "#BDBDBD",
 								}}
+								onClick={() => {
+									handleShow();
+								}}
 							>
 								{" "}
 								Add guest
@@ -47,6 +60,9 @@ const LandingPage = () => {
 								style={{
 									borderTopLeftRadius: 0,
 									borderBottomLeftRadius: 0,
+								}}
+								onClick={() => {
+									handleShow();
 								}}
 							>
 								{" "}
@@ -153,6 +169,68 @@ const LandingPage = () => {
 				</div>
 
 				{/* Filter Modal */}
+				<Modal
+					show={show}
+					onHide={handleClose}
+					animation={true}
+					dialogClassName="modal-100w"
+				>
+					<Modal.Header closeButton></Modal.Header>
+					<Modal.Body>
+						<div className="row pl-5 pr-5">
+							<div
+								className="col-sm-4 modal-filter-cols mt-2"
+								onClick={() => {
+									setShowLocationList(true);
+								}}
+							>
+								<div>
+									<p>LOCATION</p>
+									<span>{}</span>
+								</div>
+							</div>
+							<div
+								className="col-sm-4 modal-filter-cols mt-2"
+								onClick={() => {
+									setShowLocationList(false);
+								}}
+							>
+								<div>
+									<p>GUESTS</p>
+									<span>{}</span>
+								</div>
+							</div>
+							<div className="col-sm-4 text-center modal-filter-cols mt-2">
+								<div className="p-2">
+									<button
+										style={{
+											background: "#EB5757",
+											boxShadow:
+												"0px 1px 6px rgba(0, 0, 0, 0.1)",
+											borderRadius: "10px",
+										}}
+										onClick={() => {
+											handleShow();
+										}}
+									>
+										Submit
+									</button>
+								</div>
+							</div>
+						</div>
+						<div className="row">
+							{showLocationList && (
+								<div className="col-12">
+									<ul>
+										<li>Abia</li>
+										<li>Abia</li>
+										<li>Abia</li>
+									</ul>{" "}
+								</div>
+							)}
+						</div>
+					</Modal.Body>
+				</Modal>
 			</div>
 		</>
 	);

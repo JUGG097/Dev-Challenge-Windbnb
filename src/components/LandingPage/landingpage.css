@@ -20,3 +20,29 @@
 .filter-buttons button:hover{
     background-color: #828282;
 }
+
+.modal-filter-cols {
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.modal-filter-cols:hover, :focus {
+    border: 1px solid #333333;
+}
+
+.modal-100w {
+    width: 100%;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
