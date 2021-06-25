@@ -27,6 +27,7 @@ const LandingPage = () => {
 									borderTopRightRadius: 0,
 									borderBottomRightRadius: 0,
 								}}
+								onClick={() => {}}
 							>
 								Helsinki, Finland
 							</button>
@@ -150,6 +151,8 @@ const LandingPage = () => {
 						</div>
 					))}
 				</div>
+
+				{/* Filter Modal */}
 			</div>
 		</>
 	);
