@@ -11,7 +11,7 @@ const LandingPage = () => {
 			<div className="container">
 				{/* Nav Area with Search */}
 				<div className="row pt-4">
-					<div className="col-sm-6">
+					<div className="col-sm-5 mt-2">
 						<div className="text-left">
 							<img
 								className="img-fluid"
@@ -20,18 +20,34 @@ const LandingPage = () => {
 							></img>
 						</div>
 					</div>
-					<div className="col-sm-6">
-						<div
-							className="text-center"
-							style={{
-								boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.1)",
-								borderRadius: "16px",
-								padding: "10px",
-							}}
-						>
-							<span>Helsinki, Finland |</span>
-							<span> Add guest |</span>
-							<span>
+					<div className="col-sm-7 mt-2">
+						<div className="text-right filter-buttons" style={{}}>
+							<button
+								style={{
+									borderTopRightRadius: 0,
+									borderBottomRightRadius: 0,
+								}}
+							>
+								Helsinki, Finland
+							</button>
+							<button
+								style={{
+									borderTopRightRadius: 0,
+									borderBottomRightRadius: 0,
+									borderTopLeftRadius: 0,
+									borderBottomLeftRadius: 0,
+									color: "#BDBDBD",
+								}}
+							>
+								{" "}
+								Add guest
+							</button>
+							<button
+								style={{
+									borderTopLeftRadius: 0,
+									borderBottomLeftRadius: 0,
+								}}
+							>
 								{" "}
 								<i
 									class="fas fa-search"
@@ -39,7 +55,7 @@ const LandingPage = () => {
 										color: "rgba(235, 87, 87, 0.72)",
 									}}
 								></i>
-							</span>
+							</button>
 						</div>
 					</div>
 				</div>

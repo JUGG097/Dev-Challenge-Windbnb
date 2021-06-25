@@ -5,3 +5,18 @@
 .stay-img:hover {
     transform: scale(1.1);
 }
+
+
+.filter-buttons button {
+    padding: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+    /* border: none; */
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+    border: 1px;
+    cursor: pointer;
+}
+
+.filter-buttons button:hover{
+    background-color: #828282;
+}
