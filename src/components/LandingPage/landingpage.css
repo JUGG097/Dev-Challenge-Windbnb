@@ -19,6 +19,7 @@
 
 .filter-buttons button:hover{
     background-color: #828282;
+    
 }
 
 .modal-filter-cols {
@@ -38,6 +39,28 @@
 
 .modal-header {
     border-bottom: none;
+}
+
+.city-list {
+    list-style: none;
+    color: #4F4F4F
+}
+
+.city-list li {
+    cursor: pointer;
+}
+
+.city-list li:hover{
+    color: #828282;
+}
+
+.guest-list-dropdown p{
+    margin: 0
+}
+
+.guest-list-dropdown i{
+    font-size: 22px;
+    cursor: pointer;
 }
 
 @media (min-width: 576px) {

@@ -1,17 +1,52 @@
-import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Modal } from "react-bootstrap";
 import "./landingpage.css";
 import Stays from "../../store/stays";
 
 const LandingPage = () => {
 	console.log(Stays);
-	const [stays, setStays] = useState(Stays);
+	// const [stays, setStays] = useState(Stays);
+	const [filterdStays, setFilterdStays] = useState(Stays);
 	const [show, setShow] = useState(false);
 	const [showLocationList, setShowLocationList] = useState(true);
+	const [locationFilter, setLocationFilter] = useState("");
+	const [guestFilterAdult, setGuestAdultFilter] = useState(0);
+	const [guestFilterChild, setGuestChildFilter] = useState(0);
 	const [showGuestList, setShowGuestList] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const finlandCities = ["Helsinki", "Turku", "Oulu", "Vaasa"];
+
+	const minusAdult = () => {
+		if (guestFilterAdult === 0) {
+			return setGuestAdultFilter(0);
+		} else {
+			return setGuestAdultFilter(guestFilterAdult - 1);
+		}
+	};
+
+	const minusChild = () => {
+		if (guestFilterChild === 0) {
+			return setGuestChildFilter(0);
+		} else {
+			return setGuestChildFilter(guestFilterChild - 1);
+		}
+	};
+
+	const filterCards = () => {
+		const filteredArr = Stays.filter(
+			(stay) =>
+				stay.city
+					.toLowerCase()
+					.includes(locationFilter.toLowerCase()) &&
+				stay.maxGuests >= guestFilterAdult + guestFilterChild
+		);
+		setFilterdStays(filteredArr);
+	};
+
+	useEffect(() => {}, []);
 
 	return (
 		<>
@@ -37,9 +72,12 @@ const LandingPage = () => {
 								onClick={() => {
 									handleShow();
 									setShowLocationList(true);
+									setShowGuestList(false);
 								}}
 							>
-								Helsinki, Finland
+								{locationFilter
+									? locationFilter + ", Finland"
+									: "Add Location"}
 							</button>
 							<button
 								style={{
@@ -47,14 +85,19 @@ const LandingPage = () => {
 									borderBottomRightRadius: 0,
 									borderTopLeftRadius: 0,
 									borderBottomLeftRadius: 0,
-									color: "#BDBDBD",
+									// color: "#BDBDBD",
 								}}
 								onClick={() => {
 									handleShow();
+									setShowLocationList(false);
+									setShowGuestList(true);
 								}}
 							>
-								{" "}
-								Add guest
+								{guestFilterChild || guestFilterAdult
+									? guestFilterAdult +
+									  guestFilterChild +
+									  " Guests"
+									: "Add guest"}
 							</button>
 							<button
 								style={{
@@ -84,14 +127,32 @@ const LandingPage = () => {
 					</div>
 
 					<div className="col-6 col-sm-6 text-right my-auto">
-						<p>{stays.length} Stays</p>
+						<p>{filterdStays.length} Stays</p>
 					</div>
 				</div>
 
+				{/* Clear Filter */}
+				{locationFilter || guestFilterAdult || guestFilterChild ? (
+					<div className="row mt-4 p-3 filter-buttons">
+						<button
+							style={{}}
+							onClick={() => {
+								setLocationFilter("");
+								setGuestAdultFilter(0);
+								setGuestChildFilter(0);
+								setFilterdStays(Stays);
+							}}
+						>
+							Clear Filters <i class="fas fa-times"></i>
+						</button>
+					</div>
+				) : (
+					""
+				)}
 				{/* Property Cards */}
 				<div className="row text-center">
-					{stays.map((stay) => (
-						<div className="col-sm-4">
+					{filterdStays.map((stay) => (
+						<div className="col-sm-6 col-md-4">
 							<div>
 								<div>
 									<img
@@ -113,15 +174,16 @@ const LandingPage = () => {
 										color: "#828282",
 									}}
 								>
-									<div className="col-10 col-sm-10">
+									<div className="col col-sm-10">
 										<div className="text-left">
 											{stay.superHost && (
 												<span
 													style={{
 														borderRadius: "12px",
 														border: "1px solid #4F4F4F",
-														padding: "2px",
+														padding: "1px",
 														color: "#4F4F4F",
+														fontSize: "11px",
 													}}
 												>
 													SUPER HOST
@@ -182,56 +244,166 @@ const LandingPage = () => {
 								className="col-sm-4 modal-filter-cols mt-2"
 								onClick={() => {
 									setShowLocationList(true);
+									setShowGuestList(false);
 								}}
 							>
 								<div>
-									<p>LOCATION</p>
-									<span>{}</span>
+									<p
+										style={{
+											margin: 0,
+											fontSize: "10px",
+											fontWeight: "bold",
+										}}
+									>
+										LOCATION
+									</p>
+									<span>
+										{locationFilter
+											? locationFilter + ", Finland"
+											: "Add Location"}
+									</span>
 								</div>
 							</div>
 							<div
 								className="col-sm-4 modal-filter-cols mt-2"
 								onClick={() => {
 									setShowLocationList(false);
+									setShowGuestList(true);
 								}}
 							>
 								<div>
-									<p>GUESTS</p>
-									<span>{}</span>
+									<p
+										style={{
+											margin: 0,
+											fontSize: "10px",
+											fontWeight: "bold",
+										}}
+									>
+										GUESTS
+									</p>
+									<span>
+										{guestFilterChild + guestFilterAdult}
+									</span>
 								</div>
 							</div>
-							<div className="col-sm-4 text-center modal-filter-cols mt-2">
-								<div className="p-2">
+							<div
+								className="col-sm-4 text-center modal-filter-cols mt-2"
+								style={{
+									cursor: "auto",
+								}}
+							>
+								<div className="">
 									<button
 										style={{
 											background: "#EB5757",
 											boxShadow:
 												"0px 1px 6px rgba(0, 0, 0, 0.1)",
-											borderRadius: "10px",
+											borderRadius: "16px",
+											border: "none",
+											padding: "10px",
+
+											color: "white",
+											cursor: "pointer",
 										}}
 										onClick={() => {
-											handleShow();
+											handleClose();
+											filterCards();
 										}}
 									>
+										<i
+											class="fas fa-search"
+											style={{
+												color: "white",
+											}}
+										></i>{" "}
 										Submit
 									</button>
 								</div>
 							</div>
 						</div>
+
+						{/* Show Location Dropdown and Add Guests*/}
 						<div className="row">
 							{showLocationList && (
-								<div className="col-12">
-									<ul>
-										<li>Abia</li>
-										<li>Abia</li>
-										<li>Abia</li>
+								<div className="col-8">
+									<ul className="city-list">
+										{finlandCities.map((city) => (
+											<li
+												className="mt-3"
+												onClick={() => {
+													setLocationFilter(city);
+												}}
+											>
+												<i class="fas fa-map-marker-alt"></i>{" "}
+												{city}, Finland
+											</li>
+										))}
 									</ul>{" "}
+								</div>
+							)}
+							{showGuestList && (
+								<div className="col-6 mx-auto text-center guest-list-dropdown">
+									<div className="p-3">
+										<div>
+											<p>Adults</p>
+											<p>Ages 13 or Above</p>
+											<i
+												style={{}}
+												class="far fa-minus-square"
+												onClick={() => {
+													minusAdult();
+												}}
+											></i>{" "}
+											{guestFilterAdult}{" "}
+											<i
+												style={{}}
+												class="far fa-plus-square"
+												onClick={() => {
+													setGuestAdultFilter(
+														guestFilterAdult + 1
+													);
+												}}
+											></i>
+										</div>
+										<div className="mt-4">
+											<p>Children</p>
+											<p>Ages 2-12</p>
+											<i
+												class="far fa-minus-square"
+												onClick={() => {
+													minusChild();
+												}}
+											></i>{" "}
+											{guestFilterChild}{" "}
+											<i
+												class="far fa-plus-square"
+												onClick={() => {
+													setGuestChildFilter(
+														guestFilterChild + 1
+													);
+												}}
+											></i>
+										</div>
+									</div>
 								</div>
 							)}
 						</div>
 					</Modal.Body>
 				</Modal>
 			</div>
+
+			{/* Footer */}
+			<footer
+				className="row mt-4 p-4"
+				style={{
+					backgroundColor: "#1C313A",
+					color: "white",
+				}}
+			>
+				<div className="col-12 text-center">
+					<p>Created By Adeoluwa Adeboye - devChallenge.io</p>
+				</div>
+			</footer>
 		</>
 	);
 };
