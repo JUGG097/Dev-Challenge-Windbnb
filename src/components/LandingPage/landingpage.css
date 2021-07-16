@@ -49,10 +49,16 @@
 
 .city-list li {
     cursor: pointer;
+    margin-top: 1px;
+    
 }
 
 .city-list li:hover{
     color: #828282;
+}
+
+.guest-list-dropdown{
+    font-size: 20px;
 }
 
 .guest-list-dropdown p{
@@ -60,7 +66,7 @@
 }
 
 .guest-list-dropdown i{
-    font-size: 22px;
+    font-size: 30px;
     cursor: pointer;
 }
 

@@ -4,8 +4,6 @@ import "./landingpage.css";
 import Stays from "../../store/stays";
 
 const LandingPage = () => {
-	console.log(Stays);
-	// const [stays, setStays] = useState(Stays);
 	const [filterdStays, setFilterdStays] = useState(Stays);
 	const [show, setShow] = useState(false);
 	const [showLocationList, setShowLocationList] = useState(true);
@@ -151,8 +149,8 @@ const LandingPage = () => {
 				)}
 				{/* Property Cards */}
 				<div className="row text-center">
-					{filterdStays.map((stay) => (
-						<div className="col-sm-6 col-md-4">
+					{filterdStays.map((stay, id) => (
+						<div className="col-sm-6 col-md-4" key={id}>
 							<div>
 								<div>
 									<img
@@ -200,7 +198,7 @@ const LandingPage = () => {
 
 									<div className="col-2 col-sm-2 text-center pr-5">
 										<span
-											class="fas fa-star"
+											className="fas fa-star"
 											style={{
 												color: "rgba(235, 87, 87, 0.72)",
 											}}
@@ -239,7 +237,7 @@ const LandingPage = () => {
 				>
 					<Modal.Header closeButton></Modal.Header>
 					<Modal.Body>
-						<div className="row pl-5 pr-5">
+						<div className="row pl-3 pr-3">
 							<div
 								className="col-sm-4 modal-filter-cols mt-2"
 								onClick={() => {
@@ -311,7 +309,7 @@ const LandingPage = () => {
 										}}
 									>
 										<i
-											class="fas fa-search"
+											className="fas fa-search"
 											style={{
 												color: "white",
 											}}
@@ -327,14 +325,15 @@ const LandingPage = () => {
 							{showLocationList && (
 								<div className="col-8">
 									<ul className="city-list">
-										{finlandCities.map((city) => (
+										{finlandCities.map((city, id) => (
 											<li
-												className="mt-3"
+												className="mt-4"
 												onClick={() => {
 													setLocationFilter(city);
 												}}
+												key={id}
 											>
-												<i class="fas fa-map-marker-alt"></i>{" "}
+												<i className="fas fa-map-marker-alt"></i>{" "}
 												{city}, Finland
 											</li>
 										))}
@@ -349,7 +348,7 @@ const LandingPage = () => {
 											<p>Ages 13 or Above</p>
 											<i
 												style={{}}
-												class="far fa-minus-square"
+												className="far fa-minus-square"
 												onClick={() => {
 													minusAdult();
 												}}
@@ -357,7 +356,7 @@ const LandingPage = () => {
 											{guestFilterAdult}{" "}
 											<i
 												style={{}}
-												class="far fa-plus-square"
+												className="far fa-plus-square"
 												onClick={() => {
 													setGuestAdultFilter(
 														guestFilterAdult + 1
@@ -369,14 +368,14 @@ const LandingPage = () => {
 											<p>Children</p>
 											<p>Ages 2-12</p>
 											<i
-												class="far fa-minus-square"
+												className="far fa-minus-square"
 												onClick={() => {
 													minusChild();
 												}}
 											></i>{" "}
 											{guestFilterChild}{" "}
 											<i
-												class="far fa-plus-square"
+												className="far fa-plus-square"
 												onClick={() => {
 													setGuestChildFilter(
 														guestFilterChild + 1
