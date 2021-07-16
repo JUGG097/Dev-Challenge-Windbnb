@@ -1,6 +1,6 @@
 # Windbnb Landing Page (clone of Airbnb)
 
-This project/webpage was developed using `React` v "^17.0.2", `Bootstrap` v "4.1.0" and `React-Bootstrap` v "^1.6.1" library.
+This project/webpage was developed using `React` v "^17.0.2", `Bootstrap` v "4.1.0" and `React-Bootstrap` v "^1.6.1" libraries.
 
 Deployed with `Netlify` link [here](https://windbnb-adeoluwa.netlify.app/).
 
