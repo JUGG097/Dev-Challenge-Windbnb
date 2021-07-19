@@ -1,9 +1,10 @@
-.stay-img {
+.stay-img img{
     transition: transform .2s;
 }
 
-.stay-img:hover {
-    transform: scale(1.1);
+.stay-img img:hover {
+    transform: scale(1.05);
+    
 }
 
 

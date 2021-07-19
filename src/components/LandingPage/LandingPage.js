@@ -152,7 +152,7 @@ const LandingPage = () => {
 					{filterdStays.map((stay, id) => (
 						<div className="col-sm-6 col-md-4" key={id}>
 							<div>
-								<div>
+								<div className="stay-img img-fluid">
 									<img
 										style={{
 											borderRadius: "10px",
@@ -160,7 +160,7 @@ const LandingPage = () => {
 											height: "12rem",
 										}}
 										src={stay.photo}
-										className="img-fluid stay-img"
+										className=""
 										alt="stay"
 									></img>
 								</div>
@@ -172,7 +172,7 @@ const LandingPage = () => {
 										color: "#828282",
 									}}
 								>
-									<div className="col col-sm-10">
+									<div className="col-10 col-sm-10">
 										<div className="text-left">
 											{stay.superHost && (
 												<span
@@ -196,20 +196,20 @@ const LandingPage = () => {
 										</div>
 									</div>
 
-									<div className="col-2 col-sm-2 text-center pr-5">
+									<div className="col-2 col-sm-2 text-left pr-5">
 										<span
-											className="fas fa-star"
 											style={{
-												color: "rgba(235, 87, 87, 0.72)",
+												color: "#828282",
 											}}
 										>
 											<span
 												style={{
-													color: "#828282",
+													color: "rgba(235, 87, 87, 0.72)",
 												}}
 											>
-												{stay.rating}
+												&#9733;
 											</span>
+											{stay.rating}
 										</span>
 									</div>
 								</div>
