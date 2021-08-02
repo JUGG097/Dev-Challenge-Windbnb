@@ -393,13 +393,13 @@ const LandingPage = () => {
 
 			{/* Footer */}
 			<footer
-				className="row mt-4 p-4"
+				className="mt-4 p-4"
 				style={{
 					backgroundColor: "#1C313A",
 					color: "white",
 				}}
 			>
-				<div className="col-12 text-center">
+				<div className="text-center">
 					<p>Created By Adeoluwa Adeboye - devChallenge.io</p>
 				</div>
 			</footer>
