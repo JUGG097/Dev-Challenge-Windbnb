@@ -108,7 +108,7 @@ const LandingPage = () => {
 							>
 								{" "}
 								<i
-									class="fas fa-search"
+									className="fas fa-search"
 									style={{
 										color: "rgba(235, 87, 87, 0.72)",
 									}}
@@ -141,7 +141,7 @@ const LandingPage = () => {
 								setFilterdStays(Stays);
 							}}
 						>
-							Clear Filters <i class="fas fa-times"></i>
+							Clear Filters <i className="fas fa-times"></i>
 						</button>
 					</div>
 				) : (
@@ -352,6 +352,7 @@ const LandingPage = () => {
 												onClick={() => {
 													minusAdult();
 												}}
+												title="minusAdult"
 											></i>{" "}
 											{guestFilterAdult}{" "}
 											<i
@@ -362,6 +363,7 @@ const LandingPage = () => {
 														guestFilterAdult + 1
 													);
 												}}
+												title="addAdult"
 											></i>
 										</div>
 										<div className="mt-4">
@@ -372,6 +374,7 @@ const LandingPage = () => {
 												onClick={() => {
 													minusChild();
 												}}
+												title="minusChild"
 											></i>{" "}
 											{guestFilterChild}{" "}
 											<i
@@ -381,6 +384,7 @@ const LandingPage = () => {
 														guestFilterChild + 1
 													);
 												}}
+												title="addChild"
 											></i>
 										</div>
 									</div>
